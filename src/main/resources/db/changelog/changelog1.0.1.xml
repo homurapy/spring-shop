@@ -4,9 +4,12 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <include file="changelog/changelog1.0.0.xml" relativeToChangelogFile="true"/>
-    <include file="changelog/changelog1.0.1.xml" relativeToChangelogFile="true"/>
-    <include file="changelog/changelog1.0.2.xml" relativeToChangelogFile="true"/>
-    <include file="changelog/changelog1.0.3.xml" relativeToChangelogFile="true"/>
+    <changeSet id="rename-table" author="a.vasilev">
+
+        <sql>
+            INSERT INTO product (name, price, count) VALUES
+            ('сметана Снежок 310 гр', 75, 1)
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>

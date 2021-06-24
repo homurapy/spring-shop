@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="add-table" author="a.vasilev">
+
+        <sql>
+            INSERT INTO product (name, price, count) VALUES
+            ('Яблоки Симиренко', 99, 1),
+            ('Бананы', 68, 1),
+            ('чай краснодарский 200г', 150, 1),
+            ('кофе растворимый', 250, 1),
+            ('молоко валуйки', 80, 1),
+            ('шпрот в масле', 73, 1),
+            ('Яблоки сезонные', 70, 1),
+            ('помидоры розовые', 199, 1 ),
+            ('картофель ранний', 70, 1),
+            ('картофель эконом', 25, 1),
+            ('молоко валуйки', 76, 1),
+            ('авакадо', 32, 1),
+            ('лук белый ', 54, 1),
+            ('зеленый лук', 199, 1),
+            ('пельмени богатырские 500 г', 123, 1)
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
