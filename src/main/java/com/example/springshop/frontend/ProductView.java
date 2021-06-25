@@ -28,7 +28,6 @@ public class ProductView extends VerticalLayout {
     public ProductView(ProductService productService, CartService cartService) {
         this.productService = productService;
         this.cartService =cartService;
-
         findAll();
         add(initCartButton());
     }

@@ -58,7 +58,6 @@
             <column name="product_id" type="bigserial">
                 <constraints nullable="false" foreignKeyName="fk_product_id" references="product(id)"/>
             </column>
-            <column name="count" type="int" defaultValue="0"/>
             <column name="user_id" type="bigserial">
                 <constraints nullable="false" foreignKeyName="fk_user_id" references="user(id)"/>
             </column>
