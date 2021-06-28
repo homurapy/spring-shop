@@ -27,4 +27,9 @@ public class ProductService {
         return repository.findById(id).orElseThrow().getReviews();
     }
 
+    public Product saveProduct(Product product){
+        product.setCount(1D);
+        product.setReviews(null);
+       return repository.save(product);
+    }
 }

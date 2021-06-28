@@ -16,7 +16,6 @@ import com.vaadin.flow.router.Route;
 @Route("cart")
 public class CartView extends VerticalLayout {
     private final Grid<ProductDto> grid = new Grid<>(ProductDto.class);
-
     private final CartService cartService;
 
     public CartView(CartService cartService) {
