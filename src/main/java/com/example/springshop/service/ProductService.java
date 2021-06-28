@@ -6,6 +6,7 @@ import com.example.springshop.model.Review;
 import com.example.springshop.repository.ProductRepository;
 import com.example.springshop.util.MappingUtil;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

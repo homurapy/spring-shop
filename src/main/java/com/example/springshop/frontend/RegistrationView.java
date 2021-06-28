@@ -133,6 +133,9 @@ public class RegistrationView extends VerticalLayout {
                 if (service.saveUser(userBinder) == true) {
                     infoLabel.setText("Registration complied");
                     toLoginForm.setVisible(true);
+                }else {
+                    infoLabel.setText("This login is exist, please enter new login");
+                    login.clear();
                 }
 
             } else {

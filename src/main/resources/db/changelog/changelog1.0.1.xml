@@ -5,7 +5,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet id="rename-table" author="a.vasilev">
-
         <sql>
             INSERT INTO product (name, price, count) VALUES
             ('сметана Снежок 310 гр', 75, 1)
