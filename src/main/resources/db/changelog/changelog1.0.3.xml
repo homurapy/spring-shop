@@ -10,7 +10,6 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="date" type="date"/>
-            <column name="last_name" type="varchar(36)"/>
             <column name="user_id" type="bigserial">
                 <constraints nullable="false"/>
             </column>

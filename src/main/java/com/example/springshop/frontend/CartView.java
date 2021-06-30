@@ -28,7 +28,6 @@ public class CartView extends VerticalLayout {
 
     private void initCartGrid() {
         var products = cartService.getProducts();
-
         grid.setItems(products);
         grid.setColumns("name", "price");
         grid.setSizeUndefined();
@@ -40,16 +39,20 @@ public class CartView extends VerticalLayout {
             numberField.setHasControls(true);
             numberField.setMin(0);
             numberField.setValue(item.getCount());
-            numberField.addKeyDownListener(inputEvent -> item.setCount(numberField.getValue()));
+            numberField.addValueChangeListener(event -> cartService.updateQuantity(item, numberField.getValue()));
             add(numberField);
             return new HorizontalLayout(numberField);
         }));
-
     }
     private HorizontalLayout returnButton() {
         var toCartButton = new Button("назад", item -> {
             UI.getCurrent().navigate("product");
+//            cartService.saveCart(cartService.getProducts());
         });
-        return new HorizontalLayout(toCartButton);
+        var clearCart = new Button("Очистить корзину", items -> {
+            cartService.clearCart();
+            grid.getDataProvider().refreshAll();
+        });
+        return new HorizontalLayout(toCartButton, clearCart);
     }
 }
