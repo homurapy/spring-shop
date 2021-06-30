@@ -50,17 +50,33 @@
                 <constraints nullable="false" foreignKeyName="fk_product_id" references="product(id)"/>
             </column>
         </createTable>
-
-        <createTable tableName="cart">
+        <createTable tableName="order">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="date" type="date"/>
+            <column name="user_id" type="bigserial">
+                <constraints nullable="false" foreignKeyName="fk_user_id" references="user(id)"/>
+            </column>
+            <column name="status" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_price" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="item">
             <column name="id" type="bigserial">
                 <constraints primaryKey="true"/>
             </column>
             <column name="product_id" type="bigserial">
                 <constraints nullable="false" foreignKeyName="fk_product_id" references="product(id)"/>
             </column>
-            <column name="user_id" type="bigserial">
-                <constraints nullable="false" foreignKeyName="fk_user_id" references="user(id)"/>
+            <column name="quantity" type="integer" defaultValue="1"/>
+            <column name="order_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_order_id" references="order(id)"/>
             </column>
         </createTable>
+
     </changeSet>
 </databaseChangeLog>

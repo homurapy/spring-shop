@@ -11,7 +11,7 @@ public class ProductDto {
     private Long id;
     private String name;
     private Integer price;
-    private Double count;
+    private Integer count;
 
     public void incrementCount() {
         this.count++;

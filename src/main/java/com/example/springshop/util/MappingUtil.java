@@ -12,7 +12,7 @@ import java.util.List;
 public class MappingUtil {
 
     public static ProductDto productDto(Product product) {
-        return new ProductDto(product.getId(), product.getName(), product.getPrice(),1D);
+        return new ProductDto(product.getId(), product.getName(), product.getPrice(),1);
     }
 
     public static Product dtoToProduct(ProductDto dto, List<Review> reviewList) {
