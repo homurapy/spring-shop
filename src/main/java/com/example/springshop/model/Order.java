@@ -1,5 +1,6 @@
 package com.example.springshop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Order {
     @JoinColumn (name="cart_id")
     private Cart cart;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

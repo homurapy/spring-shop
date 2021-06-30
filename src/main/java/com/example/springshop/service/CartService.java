@@ -6,6 +6,7 @@ import com.example.springshop.model.Product;
 import com.example.springshop.model.User;
 import com.example.springshop.repository.CartRepository;
 import com.example.springshop.util.MappingUtil;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
