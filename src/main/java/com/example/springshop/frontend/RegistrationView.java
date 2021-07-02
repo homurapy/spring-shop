@@ -153,7 +153,7 @@ public class RegistrationView extends VerticalLayout {
             binder.readBean(null);
             infoLabel.setText("");
         });
-        add(new H1("Creat account"),layoutWithFormItems, actions, infoLabel);
+        add(new H1("Create account"),layoutWithFormItems, actions, infoLabel);
     }
 }
 
