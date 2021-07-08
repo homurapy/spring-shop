@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="init" author="a.vasilev">
+        <createTable tableName="product">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="count" type="int" defaultValue="0"/>
+        </createTable>
+        <createTable tableName="item">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="product_id" type="bigserial">
+                <constraints nullable="false" foreignKeyName="fk_product_id" references="product(id)"/>
+            </column>
+            <column name="quantity" type="integer" defaultValue="1"/>
+            <column name="order_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_order_id" references="order(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="user">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(36)"/>
+            <column name="last_name" type="varchar(36)"/>
+            <column name="phone" type="varchar(14)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="login" type="varchar(36)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar(72)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="order" author="a.vasilev">
+        <createTable tableName="order">
+        <column name="id" type="uuid">
+            <constraints primaryKey="true"/>
+        </column>
+        <column name="date" type="date"/>
+        <column name="user_id" type="bigserial">
+            <constraints nullable="false" foreignKeyName="fk_user_id" references="user(id)"/>
+        </column>
+        <column name="status" type="varchar(36)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="total_price" type="int">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+    </changeSet>
+    <changeSet id="item" author="a.vasilev">
+        <createTable tableName="item">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="product_id" type="bigserial">
+                <constraints nullable="false" foreignKeyName="fk_product_id" references="product(id)"/>
+            </column>
+            <column name="quantity" type="integer" defaultValue="1"/>
+            <column name="order_id" type="uuid">
+                <constraints nullable="false" foreignKeyName="fk_order_id" references="order(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
