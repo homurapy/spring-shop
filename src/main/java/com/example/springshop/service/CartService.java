@@ -1,8 +1,6 @@
 package com.example.springshop.service;
 
-import com.example.springshop.config.security.CustomUserDetailsService;
 import com.example.springshop.dto.ProductDto;
-import com.example.springshop.repository.ItemRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -78,9 +76,5 @@ public class CartService {
     public List<ProductDto> clearCart() {
         products.clear();
         return products;
-    }
-
-
-
-}
+    }}
 

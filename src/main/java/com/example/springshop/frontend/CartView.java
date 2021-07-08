@@ -29,7 +29,7 @@ public class CartView extends VerticalLayout {
     private final MailService mailService;
     private final OrderService orderService;
 
-    public CartView(CartService cartService, MailService mailService, OrderRepository orderRepository, OrderService orderService) {
+    public CartView(CartService cartService, MailService mailService, OrderService orderService) {
         this.cartService = cartService;
         this.mailService = mailService;
         this.orderService = orderService;
