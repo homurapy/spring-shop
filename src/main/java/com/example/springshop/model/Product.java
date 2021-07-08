@@ -7,6 +7,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -25,9 +26,10 @@ public class Product {
     private Integer price;
 
     @Column (name = "count")
-    private Double count;
+    private Integer count;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     List<Review> reviews;
+
 }

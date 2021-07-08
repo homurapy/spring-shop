@@ -1,28 +1,23 @@
 package com.example.springshop.service;
 
+import com.example.springshop.config.security.CustomUserDetailsService;
 import com.example.springshop.dto.ProductDto;
-import com.example.springshop.model.Cart;
-import com.example.springshop.model.Product;
-import com.example.springshop.model.User;
-import com.example.springshop.repository.CartRepository;
-import com.example.springshop.util.MappingUtil;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.stereotype.Service;
+import com.example.springshop.repository.ItemRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Service
+@Component
+@SessionScope
 public class CartService {
     private List<ProductDto> products;
-    private final ProductService productService;
-    private final CartRepository cartRepository;
 
-    public CartService(ProductService productService, CartRepository cartRepository) {
-        this.productService = productService;
-        this.cartRepository = cartRepository;
+
+    public CartService() {
         this.products = new ArrayList<>();
     }
 
@@ -34,7 +29,7 @@ public class CartService {
         this.products.addAll(products.stream().map(
                 product -> {
                     var newProduct = new ProductDto();
-                    newProduct.setCount(1D);
+                    newProduct.setCount(1);
                     newProduct.setPrice(product.getPrice());
                     newProduct.setName(product.getName());
                     newProduct.setId(product.getId());
@@ -47,16 +42,14 @@ public class CartService {
         products.removeIf(p -> p.getId().equals(product.getId()));
     }
 
-    public ProductDto updateQuantity(ProductDto dto, Double entity){
+    public ProductDto updateQuantity(ProductDto dto, Integer entity) {
         if (entity == 0) {
             deleteProduct(dto);
-        return null;
-        }
-        else {
+            return null;
+        } else {
             if (dto.getCount() < entity) {
                 increaseProductCount(dto);
-            }
-            else {
+            } else {
                 decreaseProductCount(dto);
             }
         }
@@ -76,24 +69,18 @@ public class CartService {
     }
 
     public List<ProductDto> getProducts() {
-        if (products == null){
+        if (products == null) {
             return null;
         }
         return products;
     }
-    public Cart saveCart(List <ProductDto> products){
-        List <Product> productList = new ArrayList<>();
-        for (int i = 0; i < products.size() ; i++) {
-            ProductDto dto = products.get(i);
-            productList.add(MappingUtil.dtoToProduct(dto, productService.getReview(dto.getId())));
-        }
-        Cart cart = new Cart(new User(), productList);
-        cartRepository.saveAndFlush(cart);
-                return cart;
+
+    public List<ProductDto> clearCart() {
+        products.clear();
+        return products;
     }
-    public List<ProductDto> clearCart(){
-          products.clear();
-          return products;
-    }
+
+
+
 }
 

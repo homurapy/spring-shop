@@ -29,7 +29,7 @@ public class ProductService {
     }
 
     public Product saveProduct(Product product){
-        product.setCount(1D);
+        product.setCount(1);
         product.setReviews(null);
        return repository.save(product);
     }
