@@ -13,10 +13,7 @@ import java.util.List;
 @ActiveProfiles("test")
 public class ProductRepositoryTest {
     @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private UserRepository userRepository;
+    private ProductRepository repository;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -35,9 +32,7 @@ public class ProductRepositoryTest {
         entityManager.persist(product);
         entityManager.persist(product2);
         entityManager.flush();
-
-        List<Product> productList = productRepository.findAll();
-
+        List<Product> productList = repository.findAll();
         Assertions.assertEquals(2, productList.size());
         Assertions.assertEquals("Салат", productList.get(productList.size() - 1).getName());
         Assertions.assertEquals("Кукурузные лепешки", productList.get(0).getName());

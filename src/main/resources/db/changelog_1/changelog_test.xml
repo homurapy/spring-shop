@@ -52,36 +52,4 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="order" author="a.vasilev">
-        <createTable tableName="order">
-        <column name="id" type="uuid">
-            <constraints primaryKey="true"/>
-        </column>
-        <column name="date" type="date"/>
-        <column name="user_id" type="bigserial">
-            <constraints nullable="false" foreignKeyName="fk_user_id" references="user(id)"/>
-        </column>
-        <column name="status" type="varchar(36)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="total_price" type="int">
-            <constraints nullable="false"/>
-        </column>
-    </createTable>
-    </changeSet>
-    <changeSet id="item" author="a.vasilev">
-        <createTable tableName="item">
-            <column name="id" type="bigserial">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="product_id" type="bigserial">
-                <constraints nullable="false" foreignKeyName="fk_product_id" references="product(id)"/>
-            </column>
-            <column name="quantity" type="integer" defaultValue="1"/>
-            <column name="order_id" type="uuid">
-                <constraints nullable="false" foreignKeyName="fk_order_id" references="order(id)"/>
-            </column>
-        </createTable>
-    </changeSet>
-
 </databaseChangeLog>
