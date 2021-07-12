@@ -3,18 +3,21 @@ package com.example.springshop.frontend;
 import com.example.springshop.dto.ProductDto;
 import com.example.springshop.service.CartService;
 import com.example.springshop.service.ProductService;
+import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +45,14 @@ public class ProductView extends VerticalLayout {
         grid.setItems(productList);
         grid.setSizeUndefined();
         grid.setSelectionMode(Grid.SelectionMode.MULTI);
+        grid.addColumn(new ComponentRenderer<>(item -> {
+            var toCartButton = new Button("Отзывы", rev -> {
+                ComponentUtil.setData(UI.getCurrent(), "dto", item);
+                UI.getCurrent().navigate("review");
+            });
+            return new HorizontalLayout(toCartButton);
+        }));
+
         ListDataProvider<ProductDto> dataProvider = DataProvider.ofCollection(productList);
         grid.setDataProvider(dataProvider);
         return grid;
@@ -55,7 +66,14 @@ public class ProductView extends VerticalLayout {
         var toCartButton = new Button("Корзина", item -> {
             UI.getCurrent().navigate("cart");
         });
-        return new HorizontalLayout(toCartButton, addToCartButton);
+
+        var logoutButton = new Button("Выход", item -> {
+            SecurityContextHolder.clearContext();
+            UI.getCurrent().navigate("login");
+        });
+
+
+        return new HorizontalLayout(toCartButton, addToCartButton, logoutButton);
     }
     private HorizontalLayout filter() {
         TextField name = new TextField();

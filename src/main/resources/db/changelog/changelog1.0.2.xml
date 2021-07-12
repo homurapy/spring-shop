@@ -25,5 +25,25 @@
             ('пельмени богатырские 500 г', 123, 1)
         </sql>
     </changeSet>
+    <changeSet id="add-review" author="a.vasilev">
+        <addColumn tableName="review">
+            <column name="is_moderated" type="boolean" defaultValue="false"/>
+            <column name="user_id" type="bigserial">
+                <constraints nullable="false" foreignKeyName="fk_user_id" references="user(id)"/>
+            </column>
 
+        </addColumn>
+    </changeSet>
+    <changeSet id="add-admin" author="v.eremin">
+        <modifyDataType tableName="user" columnName="password" newDataType="varchar(128)"/>
+        <insert tableName="user">
+            <column name="name" value="admin"/>
+            <column name="last_name" value="admin"/>
+            <column name="login" value="admin"/>
+            <column name="password" value="$2y$12$rxg3cYnpaZsNwAVuaiKZXeDb69dR.h9foNdfARmOp/9UBRLymKV22"/>
+            <column name="email" value="mail@mail.ru"/>
+            <column name="phone" value="123123"/>
+            <column name="role" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>

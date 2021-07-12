@@ -22,6 +22,13 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(name = "is_moderated")
+    private Boolean isModerated = false;
 }
 
 
