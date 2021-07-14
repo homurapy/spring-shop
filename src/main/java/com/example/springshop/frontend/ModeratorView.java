@@ -31,8 +31,10 @@ public class ModeratorView extends VerticalLayout {
     public ModeratorView(ReviewService reviewService, CustomUserDetailsService userDetailsService) {
         this.reviewService = reviewService;
         this.dto = (ProductDto) ComponentUtil.getData(UI.getCurrent(), "dto");
-        System.out.println(dto.getName());
-        add(findAll());
+        var toBackButton = new Button("назад", item -> {
+            UI.getCurrent().navigate("product");
+        });
+        add(toBackButton, findAll());
 
     }
 
