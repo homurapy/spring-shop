@@ -20,15 +20,17 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final ItemRepository itemRepository;
     private final ProductRepository productRepository;
-
     private final CustomUserDetailsService service;
 
     public Order createOrder(List<ProductDto> dtos) {
-        Order order = new Order(UUID.randomUUID(), service.getUser(),totalPrice(dtos),new Date(),"new");
+        Order order = new Order();
+        order.setUuid(UUID.randomUUID());
+        order.setUser(service.getUser());
+        order.setTotalPrice(totalPrice(dtos));
+        order.setDate(new Date());
+        order.setStatus("new");
         orderRepository.save(order);
-
-        itemRepository.deleteAll();
-        for (int i = 0; i < dtos.size(); i++) {
+            for (int i = 0; i < dtos.size(); i++) {
             Item item = new Item();
             ProductDto dto = dtos.get(i);
             item.setProduct(productRepository.getById(dto.getId()));
@@ -46,4 +48,8 @@ public class OrderService {
         }
         return total;
     }
+    public void clearOrder(Order ord){
+        orderRepository.delete(ord);
+    }
+
 }

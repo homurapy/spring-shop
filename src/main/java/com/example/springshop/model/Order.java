@@ -37,7 +37,10 @@ public class Order {
     @Column(name = "status")
     private String status;
 
-//    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-//    List<Item> items;
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    List<Item> items;
+
+    public Order(UUID randomUUID, User user, Integer totalPrice, Date date) {
+    }
 }

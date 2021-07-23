@@ -46,4 +46,7 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     List<Order> orders;
+
+    public User(String vasya, String petrov, int i, String user1, String pass1, String s, String role_user) {
+    }
 }

@@ -62,7 +62,7 @@ public class CartView extends VerticalLayout {
             Order order = orderService.createOrder(cartService.getProducts());
             String text = "Ваш заказ №" + order.getUuid() + " успешно создан, к оплате " + order.getTotalPrice() + " рублей";
             System.out.println(text);
-            mailService.sendMessage("xzi123@mail.ru", text);
+            mailService.sendMessage("homurapy@mail.ru", text);
         });
         var toCartButton = new Button("назад", item -> {
             UI.getCurrent().navigate("product");
